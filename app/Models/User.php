@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'tipo_usuario_id'
     ];
 
     /**
@@ -30,6 +31,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    public static $messages = [
+        'required' => 'O campo :attribute deve ser preenchido na forma correta',
+        'password.min' => 'A senha deve ter no minimo 8 caracteres',
+        'email.email' => "O email deve ser um email valido",
+        'unique' => "O :attribute já esta cadastrado no sistema!",
+        'password.confirmed' => "As senhas devem ser identicas"
     ];
 
     /**

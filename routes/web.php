@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+
+
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+Route::middleware('admin')->group(function () {
+    Route::get('usuario/cadastrar', [UsuarioController::class, 'cadastrar'])->name('usuario.cadastrar');
+    Route::post('usuario/criar', [UsuarioController::class, 'criar'])->name('usuario.criar');
 });
